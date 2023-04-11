@@ -48,7 +48,7 @@ def algorithm2(gnm_graphs):
     for graph in gnm_graphs:
         attempt = 0
         d = 20
-        while attempt != 25:
+        while attempt != 45:
             copied_graph = graph.copy()
             attempt += 1
             for vertex in graph.nodes():
@@ -59,7 +59,7 @@ def algorithm2(gnm_graphs):
             real_max_set = 0
             real_max_set = len(maximal_independent_set(copied_graph))
             if (copied_graph_node_set == real_max_set):
-                attempt = 25
+                attempt = 45
                 independent_set_size.append(len(copied_graph.nodes()))
                 print(f"Graph {cont} has a large independent set")
 
@@ -94,13 +94,13 @@ gnm_graphs.append(rg.gnm_random_graph(nodes_number6, 1000, None, False))
 x = [1000, 1200, 1600, 1800, 2000, 2200]
 
 
-# y_1 = algorithm1(erdos_renyi_graphs)
+y_1 = algorithm1(erdos_renyi_graphs)
 
-# plt.plot(x, y_1)
-# plt.xlabel('Number of nodes')
-# plt.ylabel('Bipartite graph weight')
-# plt.title('Algorithm 1 graph')
-# plt.show()
+plt.plot(x, y_1)
+plt.xlabel('Number of nodes')
+plt.ylabel('Bipartite graph weight')
+plt.title('Algorithm 1 graph')
+plt.show()
 
 
 y_2 = algorithm2(gnm_graphs)
