@@ -1,5 +1,6 @@
 import random
 import math
+import matplotlib.pyplot as plt
 
 
 def geom_dist(p: float) -> int:
@@ -36,7 +37,7 @@ def collectors_problem_packs() -> float:
         package = [random.random(), random.random(), random.random(),
                    random.random(), random.random()]
         new_coupons = check_package(package, new_coupons, total_coupons)
-        total_bought += 5
+        total_bought += pack_size
         if new_coupons > total_coupons:
             new_coupons = total_coupons
 
@@ -55,7 +56,7 @@ def execute():
     mean = sum/5000
     for value in sd_list:
         standard_deviation += pow((value - mean), 2)
-    return mean, math.sqrt(standard_deviation/5000)
+    return mean, math.sqrt(standard_deviation/5000), sd_list
 
 
 def execute2():
@@ -70,16 +71,16 @@ def execute2():
     mean = sum/5000
     for value in sd_list:
         standard_deviation += pow((value - mean), 2)
-    return mean, math.sqrt(standard_deviation/5000)
+    return mean, math.sqrt(standard_deviation/5000), sd_list
 
 
 print("Buying one card at a time")
-output1, output2 = execute()
+output1, output2, values_list = execute()
 print(f"Mean: {output1}")
 print(f"Standard Deviation: {output2}")
 
 
 print("Buying packages with 5 different cards each")
-output3, output4 = execute2()
+output3, output4, values_list2 = execute2()
 print(f"Mean: {output3}")
 print(f"Standard Deviation: {output4}")
