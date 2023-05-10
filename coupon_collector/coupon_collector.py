@@ -74,13 +74,20 @@ def execute2():
     return mean, math.sqrt(standard_deviation/5000), sd_list
 
 
-print("Buying one card at a time")
-output1, output2, values_list = execute()
-print(f"Mean: {output1}")
-print(f"Standard Deviation: {output2}")
+# print("Buying one stamp at a time")
+# output1, output2, values_list = execute()
+# print(f"Mean: {output1}")
+# print(f"Standard Deviation: {output2}")
+# print(f"Maximum value: {max(values_list)},  Minimum value {min(values_list)}")
 
 
-print("Buying packages with 5 different cards each")
+print("Buying packages with 5 different stamps each")
 output3, output4, values_list2 = execute2()
 print(f"Mean: {output3}")
 print(f"Standard Deviation: {output4}")
+
+
+plt.hist(values_list2, bins=200)
+plt.xlabel("Total of stamps bought")
+plt.ylabel("Occurrences")
+plt.show()
