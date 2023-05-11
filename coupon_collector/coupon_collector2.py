@@ -3,30 +3,6 @@ import math
 import matplotlib.pyplot as plt
 
 
-def bernouli(p):
-    if (random.random() <= p):
-        return 0
-    return 1
-
-
-def buy_coupons(n, k):
-    new_cards: int = 0
-    p = 1.0 - pow(((n - 1)/n), k)
-    for i in range(k):
-        if bernouli(p) == 0:
-            new_cards += 1
-    return new_cards
-
-
-def buy_coupons_package(n, k):
-    new_cards: int = 0
-    p = 1.0 - pow(((n - 1)/n), k)
-    for i in range(k):
-        if bernouli(p) == 0:
-            new_cards += 1
-    return new_cards
-
-
 def buy_new_stamp(album):
     pos = random.randint(0, 679)
     if album[pos] == False:
@@ -112,6 +88,11 @@ def execute2():
 # output1, output2, values_list = execute()
 # print(f"Mean of new stamps: {output1}")
 # print(f"Standard deviation: {output2}")
+# plt.hist(values_list, bins=200)
+# plt.xlabel("Total of stamps bought")
+# plt.ylabel("Occurrences")
+# plt.show()
+
 print("\n-----------------\n")
 print("Buying coupons packages - 5 per package")
 output3, output4, values_list2 = execute2()
