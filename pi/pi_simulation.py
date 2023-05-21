@@ -9,7 +9,7 @@ def estimate_numpy(iterations: int):
     x = np.random.uniform(0, 1, iterations)
     y = np.random.uniform(0, 1, iterations)
     for val_x, val_y in zip(x, y):
-        if ((val_x**2) + (val_y**2)) <= 1:
+        if (((val_x-0.5)**2) + ((val_y-0.5)**2)) <= 0.25:
             circle_dots += 1
         square_dots += 1
     return 4*(circle_dots/square_dots)
@@ -33,16 +33,13 @@ def estimate(iterations: int):
 
 results = np.array([])
 iter = np.array([])
-labels = np.arange(3.0, 3.21, 0.1)
 for i in range(1000, 5000000, 10000):
-    # iter.append(i)
-    # results.append(estimate(i))
     results = np.insert(results, results.size, estimate_numpy(i))
     print(i)
     iter = np.insert(iter, iter.size, i)
+print(f"result: {results[results.size-1]}")
 
-# plt.figure()
-plt.plot(results, iter, "ro")
+plt.plot(results, iter, "bo")
 plt.xlim([3.12, 3.17])
 plt.xlabel("Estimated Value")
 plt.ylabel("Total of iterations")
