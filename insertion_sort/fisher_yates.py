@@ -1,8 +1,14 @@
 import numpy as np
+import random
 
 
 def fisher_yates_shuffle(n: int):
-    shuffled_list = np.random.randint(n, size=n)
+    shuffled_list = np.arange(n)
+    for i in range(n):
+        l = random.randint(i, n-1)
+        aux = shuffled_list[l]
+        shuffled_list[l] = shuffled_list[i]
+        shuffled_list[i] = aux
 
     return shuffled_list
 
