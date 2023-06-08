@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 from time import perf_counter
 
 
@@ -32,7 +33,6 @@ def insertion_sort(shuffled_list: np.array):
 
 def probabilistic_insertion_sort(n: int):
     shuffled_list = fisher_yates_shuffle(n)
-    print(shuffled_list)
     return insertion_sort(shuffled_list)
 
 
@@ -45,8 +45,17 @@ for i in range(100, 800, 10):
     times.append(time_duration)
     array_size.append(i)
 
+# plt.bar(array_size, proportions, color='blue',
+#         width=5)
 
-# print("After calling probabilistic insertion sort:")
-# print(ordered_list)
-# print(proportion)
-# print(time_duration)
+# plt.xlabel("Array Size(n)")
+# plt.ylabel("Number of comparisons by array size")
+# plt.show()
+
+
+plt.bar(proportions, times, color='blue',
+        width=1)
+
+plt.xlabel("Number of comparisons by array size")
+plt.ylabel("Execution time in seconds")
+plt.show()
