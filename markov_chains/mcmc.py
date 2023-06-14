@@ -4,6 +4,10 @@ import matplotlib.pyplot as plt
 from time import perf_counter
 
 
+def expected_time(n: int):
+    return (n + 2) * (n - 1)
+
+
 def mcmc(n: int):
     repetitions = 1000
     x = 1
@@ -29,9 +33,19 @@ def mcmc(n: int):
 
 
 execution_times = []
+expected_times = []
+elements_qty = []
 for i in range(3, 101):
+    elements_qty.append(i)
     execution_times.append(mcmc(i))
+    expected_times.append(expected_time(i))
 
 
-for i in range(10):
-    print(execution_times[i])
+plt.plot(elements_qty, execution_times)
+plt.plot(elements_qty, expected_times)
+plt.xlabel("Quantity of elements")
+plt.ylabel("Execution Time")
+plt.show()
+
+# for val in execution_times:
+#     print(val)
