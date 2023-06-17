@@ -1,25 +1,22 @@
 import numpy as np
-import random
 import matplotlib.pyplot as plt
-from time import perf_counter
 
 
 def fast_convergence(n: int):
-    # pi_i = np.full((1, n+1), 1/(n+1))
+    p = 1/2
+    q = 1-p
+
+    matrix_P = np.zeros((n+1, n+1))
+    matrix_P[0][0] = q
+    matrix_P[0][1] = p
+    matrix_P[n][1] = 1
     pi_i = [1/(n+1)]*(n+1)
-    for j in range(60):
-        for i in range(len(pi_i)):
-            aux = 0
-            if i == 0:
-                aux = pi_i[i]/2 + pi_i[i+1]/2
-            elif i == len(pi_i)-1:
-                aux = pi_i[i-1]/2
-            elif i == len(pi_i)-2:
-                aux = pi_i[i-1]/2
-            else:
-                aux = pi_i[i-1]/2 + pi_i[i+1]/2
-            pi_i[i] = aux
-    return (1/pi_i[n])-1
+    for i in range(1, n):
+        matrix_P[i][i+1] = p
+        matrix_P[i][i-1] = q
+
+    final_pi = np.dot(pi_i, np.linalg.matrix_power(matrix_P, n*20))
+    return (1/final_pi[n])-1
 
 
 def expected_time(n: int):
@@ -34,7 +31,6 @@ for i in range(3, 101):
     elements_qty.append(i)
     expected_times.append(expected_time(i))
 
-# fast_convergence(5)
 
 plt.plot(elements_qty, t_nn)
 plt.plot(elements_qty, expected_times)
