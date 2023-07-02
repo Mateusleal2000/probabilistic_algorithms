@@ -15,7 +15,7 @@ def fast_convergence(n: int):
         matrix_P[i][i+1] = p
         matrix_P[i][i-1] = q
 
-    final_pi = np.dot(pi_i, np.linalg.matrix_power(matrix_P, n*20))
+    final_pi = np.dot(pi_i, np.linalg.matrix_power(matrix_P, n*25))
     return (1/final_pi[n])-1
 
 
